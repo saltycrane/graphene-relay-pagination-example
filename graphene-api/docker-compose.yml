@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  db:
+    image: "postgres:13"
+    container_name: "pagination_ex_postgres"
+    environment:
+      POSTGRES_PASSWORD: "mypassword"
+    ports:
+      - "54321:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+volumes:
+  postgres_data:
+    name: pagination_ex_postgres_data

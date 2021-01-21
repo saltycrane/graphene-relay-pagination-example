@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -eux
+
+cat ./bin/reset.sql | docker exec -i pagination_ex_postgres psql -U postgres
