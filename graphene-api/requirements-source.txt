@@ -1,2 +1,3 @@
 Django
+graphene-django
 psycopg2-binary
