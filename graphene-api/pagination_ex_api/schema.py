@@ -1,8 +1,10 @@
 import graphene
 
+import fishes.schema
 
-class Query(graphene.ObjectType):
-    hello = graphene.String(default_value="Hi")
+
+class Query(fishes.schema.Query, graphene.ObjectType):
+    pass
 
 
 schema = graphene.Schema(query=Query)

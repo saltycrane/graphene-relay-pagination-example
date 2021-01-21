@@ -1,5 +1,7 @@
 # graphene-relay-basic-pagination-example
 
+A basic example GraphQL pagination API for [Relay](https://relay.dev/) using [Graphene](https://graphene-python.org/) and [Django](https://www.djangoproject.com/).
+
 ## Graphene GraphQL API server
 
 - Install and set up
@@ -20,6 +22,23 @@
 - Run the following query:
     ``` graphql
     {
-      hello
+        allFishes(first: 5) {
+            pageInfo {
+                hasNextPage
+                hasPreviousPage
+                startCursor
+                endCursor
+            }
+            edges {
+                cursor
+                node {
+                    id
+                    description
+                    iconUrl
+                    name
+                    price
+                }
+            }
+        }
     }
     ```
