@@ -1,6 +1,7 @@
 from graphene import ObjectType, relay
 from graphene_django import DjangoObjectType
 
+from artsy_relay_pagination.fields import ArtsyConnection, ArtsyConnectionField
 from fishes.models import Fish
 
 
@@ -10,14 +11,14 @@ class FishNode(DjangoObjectType):
         interfaces = (relay.Node,)
 
 
-class FishConnection(relay.Connection):
+class FishConnection(ArtsyConnection):
     class Meta:
         node = FishNode
 
 
 class Query(ObjectType):
     fish = relay.Node.Field(FishNode)
-    all_fishes = relay.ConnectionField(FishConnection)
+    all_fishes = ArtsyConnectionField(FishConnection)
 
     def resolve_all_fishes(root, info, **kwargs):
         return Fish.objects.all()
