@@ -1,3 +1,3 @@
-export default function Index() {
-  return <div>Index</div>;
-}
+import FishesPage from "../FishesPage";
+
+export default FishesPage;

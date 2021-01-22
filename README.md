@@ -105,3 +105,16 @@ SELECT "fishes_fish"."id", "fishes_fish"."description", "fishes_fish"."icon_url"
 - https://github.com/graphql-python/graphene-django/blob/v2.15.0/graphene_django/filter/fields.py
 - https://github.com/graphql-python/graphene-django/blob/v2.15.0/graphene_django/fields.py#L132-L177
 - https://github.com/graphql-python/graphql-relay-py/blob/v2.0.1/graphql_relay/connection/arrayconnection.py#L30-L104
+
+## React Relay Next.js webapp
+
+### Usage
+
+- Install
+  ``` sh
+  $ cd react-relay-webapp
+  $ npm install
+  $ npm run devserver
+  ```
+
+- Go to http://127.0.0.1:3000 in the browser

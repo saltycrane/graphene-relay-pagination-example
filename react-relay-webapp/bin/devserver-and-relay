@@ -1,0 +1,16 @@
+#!/bin/bash -e
+
+if ! command -v watchman >/dev/null 2>&1; then
+    echo >&2 "Error:"
+    echo >&2 "Watchman is required, but not installed. See https://facebook.github.io/watchman/docs/install.html"
+    echo >&2 "If you just want to run the dev server without the Relay compiler, use \`npm run devserver\` instead."
+    echo >&2 "Aborting."
+    echo >&2 ""
+    exit 1
+fi
+
+# Run the dev server and relay compiler in parallel.
+# Use `wait` so that Ctrl-C kills both processes.
+next &
+npm run relay -- --watch &
+wait
