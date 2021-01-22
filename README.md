@@ -1,6 +1,8 @@
-# graphene-relay-basic-pagination-example
+# Graphene Relay Basic Pagination Example
 
-A basic example GraphQL pagination API for [Relay](https://relay.dev/) using [Graphene](https://graphene-python.org/) and [Django](https://www.djangoproject.com/).
+A basic example GraphQL pagination API for [Relay](https://relay.dev/) using [Graphene](https://graphene-python.org/) and [Django](https://www.djangoproject.com/) which works well with infinite scroll UIs.
+
+For a pagination API designed for Amazon-style, discrete-paged UIs, designed by Artsy Engineering, see [my artsy pagination example](https://github.com/saltycrane/graphene-relay-pagination-example/tree/artsy-example).
 
 ## Graphene GraphQL API server
 
@@ -22,23 +24,23 @@ A basic example GraphQL pagination API for [Relay](https://relay.dev/) using [Gr
 - Run the following query:
     ``` graphql
     {
-        allFishes(first: 5) {
-            pageInfo {
-                hasNextPage
-                hasPreviousPage
-                startCursor
-                endCursor
-            }
-            edges {
-                cursor
-                node {
-                    id
-                    description
-                    iconUrl
-                    name
-                    price
-                }
-            }
+      allFishes(first: 5) {
+        pageInfo {
+          hasNextPage
+          hasPreviousPage
+          startCursor
+          endCursor
         }
+        edges {
+          cursor
+          node {
+            id
+            description
+            iconUrl
+            name
+            price
+          }
+        }
+      }
     }
     ```
