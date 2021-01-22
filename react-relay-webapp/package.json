@@ -1,0 +1,29 @@
+{
+  "scripts": {
+    "build": "NODE_ENV=production rm -rf node_modules/.cache && rm -rf .next/ && rm -rf out/ && next build && next export && touch out/.nojekyll",
+    "deploy": "./bin/gh-pages",
+    "dev": "next",
+    "lint": "eslint --ext .tsx .",
+    "start": "next start",
+    "tsc": "tsc --version && tsc"
+  },
+  "prettier": {
+    "trailingComma": "all"
+  },
+  "dependencies": {
+    "@types/node": "^14.14.22",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "next": "^10.0.5",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "typescript": "^4.1.3"
+  },
+  "devDependencies": {
+    "@typescript-eslint/parser": "^4.14.0",
+    "eslint": "^7.18.0",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "prettier": "^2.2.1"
+  }
+}
