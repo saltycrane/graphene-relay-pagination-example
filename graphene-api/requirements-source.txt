@@ -1,3 +1,4 @@
 Django
+django-cors-headers
 graphene-django
 psycopg2-binary
