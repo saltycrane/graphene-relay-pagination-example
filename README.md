@@ -10,7 +10,8 @@ For a vanilla Graphene Relay pagination API, which works well with an infinite s
 
 ### Usage
 
-- Install and set up
+- Install Python 3.8
+- Install packages, set up database, and run dev server
     ``` sh
     $ cd graphene-api
     $ python3 -m venv venv
@@ -110,7 +111,8 @@ SELECT "fishes_fish"."id", "fishes_fish"."description", "fishes_fish"."icon_url"
 
 ### Usage
 
-- Install
+- Install Node.js 14
+- Install packages and run dev server
   ``` sh
   $ cd react-relay-webapp
   $ npm install
@@ -118,3 +120,7 @@ SELECT "fishes_fish"."id", "fishes_fish"."description", "fishes_fish"."icon_url"
   ```
 
 - Go to http://127.0.0.1:3000 in the browser
+
+### Notes
+
+Server-side rendering (SSR) [is disabled](/react-relay-webapp/src/pages/index.tsx) because it's difficult to set up and isn't important for this example.
