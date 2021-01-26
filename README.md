@@ -6,7 +6,8 @@ For a pagination API designed for Amazon-style, discrete-paged UIs, designed by 
 
 ## Graphene GraphQL API server
 
-- Install and set up
+- Install Python 3.8
+- Install packages, set up database, and run dev server
     ``` sh
     $ cd graphene-api
     $ python3 -m venv venv

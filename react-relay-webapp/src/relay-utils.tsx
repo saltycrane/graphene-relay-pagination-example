@@ -57,11 +57,13 @@ const environment = new Environment({
 export function withRelayEnvironment<TProps>(
   WrappedComp: React.ComponentType<TProps>,
 ) {
-  const WithRelayEnvironment = (props: TProps) => (
-    <RelayEnvironmentProvider environment={environment}>
-      <WrappedComp {...props} />
-    </RelayEnvironmentProvider>
-  );
+  const WithRelayEnvironment = (props: TProps) => {
+    return (
+      <RelayEnvironmentProvider environment={environment}>
+        <WrappedComp {...props} />
+      </RelayEnvironmentProvider>
+    );
+  };
   return WithRelayEnvironment;
 }
 
