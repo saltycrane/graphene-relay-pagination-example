@@ -28,7 +28,7 @@ For a vanilla Graphene Relay pagination API, which works well with an infinite s
 - Run the following query:
     ``` graphql
     {
-      allFishes(first: 5) {
+      allFishes(first: 5, orderBy: "name") {
         pageCursors {
           previous {
             cursor
@@ -83,7 +83,7 @@ Data is stored in a PostgreSQL database running in Docker. It is seeded with fix
 
 ``` sql
 SELECT COUNT(*) AS "__count" FROM "fishes_fish";
-SELECT "fishes_fish"."id", "fishes_fish"."description", "fishes_fish"."icon_url", "fishes_fish"."name", "fishes_fish"."price" FROM "fishes_fish" LIMIT 5 OFFSET 5;
+SELECT "fishes_fish"."id", "fishes_fish"."description", "fishes_fish"."icon_url", "fishes_fish"."name", "fishes_fish"."price" FROM "fishes_fish" ORDER BY "fishes_fish"."name" ASC LIMIT 5 OFFSET 5;
 ```
 
 ### Interesting code in this repo
@@ -102,5 +102,6 @@ SELECT "fishes_fish"."id", "fishes_fish"."description", "fishes_fish"."icon_url"
 - https://github.com/graphql/graphql-relay-js/blob/v0.5.4/src/connection/arrayconnection.js
 
 #### Python
+- https://github.com/graphql-python/graphene-django/blob/v2.15.0/graphene_django/filter/fields.py
 - https://github.com/graphql-python/graphene-django/blob/v2.15.0/graphene_django/fields.py#L132-L177
 - https://github.com/graphql-python/graphql-relay-py/blob/v2.0.1/graphql_relay/connection/arrayconnection.py#L30-L104

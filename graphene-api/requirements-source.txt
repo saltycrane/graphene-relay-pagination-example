@@ -1,3 +1,4 @@
 Django
+django-filter
 graphene-django
 psycopg2-binary

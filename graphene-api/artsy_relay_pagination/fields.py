@@ -1,6 +1,6 @@
 from graphene import Boolean, Field, Int, List, ObjectType, String
 from graphene.relay import Connection
-from graphene_django import DjangoConnectionField
+from graphene_django.filter import DjangoFilterConnectionField
 
 from .helpers import convert_connection_args_to_page_options
 from .pagination import create_page_cursors
@@ -26,10 +26,10 @@ class ArtsyConnection(Connection):
     page_cursors = Field(PageCursors)
 
 
-class ArtsyDjangoConnectionField(DjangoConnectionField):
+class ArtsyConnectionField(DjangoFilterConnectionField):
     @classmethod
     def resolve_connection(cls, _connection, args, iterable, max_limit=None):
-        connection = super(ArtsyDjangoConnectionField, cls).resolve_connection(
+        connection = super(ArtsyConnectionField, cls).resolve_connection(
             _connection, args, iterable, max_limit
         )
 

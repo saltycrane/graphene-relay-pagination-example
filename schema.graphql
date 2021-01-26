@@ -47,5 +47,5 @@ type PageInfo {
 
 type Query {
   fish(id: ID!): FishNode
-  allFishes(offset: Int, before: String, after: String, first: Int, last: Int): FishNodeConnection
+  allFishes(offset: Int, before: String, after: String, first: Int, last: Int, name: String, name_Contains: String, price_Lt: Int, price_Gt: Int, orderBy: String): FishNodeConnection
 }
