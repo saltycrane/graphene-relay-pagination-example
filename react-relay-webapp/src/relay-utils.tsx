@@ -68,9 +68,9 @@ export function withRelayEnvironment<TProps>(
 }
 
 /**
- * connToArray - convert Relay connection to array
+ * connectionToArray - convert Relay connection to array
  */
-export function connToArray<TNode>(connection?: TConnection<TNode>) {
+export function connectionToArray<TNode>(connection?: TConnection<TNode>) {
   if (!connection || !connection.edges) {
     return [];
   }
