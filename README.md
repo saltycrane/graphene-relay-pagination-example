@@ -1,12 +1,34 @@
 # Graphene Relay Artsy Pagination Example
 
-## Graphene GraphQL API server
+This is an example GraphQL API using [Relay connections](https://relay.dev/graphql/connections.htm) to power a discretely paged Amazon-like pagination UI. Connections are designed for infinite-scroll UIs, however Artsy Engineering developed a solution to use them with discretely paged UIs as described in their article: [Effortless Pagination with GraphQL and Relay? Really!](https://artsy.github.io/blog/2020/01/21/graphql-relay-windowed-pagination/)
 
-This is an example GraphQL pagination API for [Relay](https://relay.dev/) using [Graphene](https://graphene-python.org/) and [Django](https://www.djangoproject.com/). It augments the Relay [Connection](https://relay.dev/graphql/connections.htm) type with additional metadata which can be used for an Amazon-style, discrete-paged, pagination UI (as opposed to an infinite scroll UI).
+This repo contains an implementation of the Artsy pagination API in [Graphene](https://graphene-python.org/), [Django](https://www.djangoproject.com/), and Python and a corresponding web app using [Relay](https://relay.dev/), React, and TypeScript.
 
-This API was designed by Artsy Engineering. Read the excellent article: [Effortless Pagination with GraphQL and Relay? Really!](https://artsy.github.io/blog/2020/01/21/graphql-relay-windowed-pagination/) This repo is example implementation of Artsy API in Graphene and Python. I ported the [TypeScript code in `artsy/metaphysics`](https://github.com/artsy/metaphysics/blob/11bcc29569e3a9bd9a8f9b2f0a31af1e65e88986/src/schema/v2/fields/pagination.ts) and [`relay-cursor-paging`](https://github.com/darthtrevino/relay-cursor-paging/blob/177eca6975ef7cd602caf2f92edbeed00cabf3b9/src/getPagingParameters.ts) to Python for demonstration purposes.
+#### Vanilla Graphene Relay pagination example
 
 For a vanilla Graphene Relay pagination API, which works well with an infinite scroll UI, see [my basic pagination example](https://github.com/saltycrane/graphene-relay-pagination-example/tree/basic-example).
+
+#### Screenshots
+
+**Beginning**
+![beginning screenshot](./images/beginning.png)
+
+**Middle**
+![middle screenshot](./images/middle.png)
+
+**End**
+![end screenshot](./images/end.png)
+
+## Graphene GraphQL API server
+
+The Artsy pagination API augments the Relay Connection type with an additional `pageCursors` field that contains metadata used to implement the pagination UI. I ported their [TypeScript code in `artsy/metaphysics`](https://github.com/artsy/metaphysics/blob/11bcc29569e3a9bd9a8f9b2f0a31af1e65e88986/src/schema/v2/fields/pagination.ts) and [`relay-cursor-paging`](https://github.com/darthtrevino/relay-cursor-paging/blob/177eca6975ef7cd602caf2f92edbeed00cabf3b9/src/getPagingParameters.ts) to Python using Graphene and Django.
+
+Data is stored in a PostgreSQL database running in Docker. It is seeded with fish fixture data from [ACNHAPI](https://github.com/alexislours/ACNHAPI). Django is configured to log SQL queries to the console and show that SQL queries use `COUNT`, `LIMIT`, and `OFFSET`. Example:
+
+``` sql
+SELECT COUNT(*) AS "__count" FROM "fishes_fish";
+SELECT "fishes_fish"."id", "fishes_fish"."description", "fishes_fish"."icon_url", "fishes_fish"."name", "fishes_fish"."price" FROM "fishes_fish" ORDER BY "fishes_fish"."name" ASC LIMIT 5 OFFSET 5;
+```
 
 ### Usage
 
@@ -78,22 +100,13 @@ For a vanilla Graphene Relay pagination API, which works well with an infinite s
 $ ./manage.py graphql_schema --schema pagination_ex_api.schema.schema --out ../schema.graphql
 ```
 
-### Database notes
+### Interesting backend code in this repo
 
-Data is stored in a PostgreSQL database running in Docker. It is seeded with fixture data. Django is configured to log SQL queries to the console and show that SQL queries use `COUNT`, `LIMIT`, and `OFFSET`. Example:
+- [/graphene-api/fishes/schema.py](/graphene-api/fishes/schema.py)
+- [/graphene-api/artsy_relay_pagination/fields.py](/graphene-api/artsy_relay_pagination/fields.py)
+- [/graphene-api/artsy_relay_pagination/pagination.py](/graphene-api/artsy_relay_pagination/pagination.py)
 
-``` sql
-SELECT COUNT(*) AS "__count" FROM "fishes_fish";
-SELECT "fishes_fish"."id", "fishes_fish"."description", "fishes_fish"."icon_url", "fishes_fish"."name", "fishes_fish"."price" FROM "fishes_fish" ORDER BY "fishes_fish"."name" ASC LIMIT 5 OFFSET 5;
-```
-
-### Interesting code in this repo
-
-- https://github.com/saltycrane/graphene-relay-pagination-example/blob/artsy-example/graphene-api/fishes/schema.py
-- https://github.com/saltycrane/graphene-relay-pagination-example/blob/artsy-example/graphene-api/artsy_relay_pagination/fields.py
-- https://github.com/saltycrane/graphene-relay-pagination-example/blob/artsy-example/graphene-api/artsy_relay_pagination/pagination.py
-
-### Relevant code links in other repos
+### Relevant code in other repos
 
 #### TypeScript
 
@@ -107,7 +120,9 @@ SELECT "fishes_fish"."id", "fishes_fish"."description", "fishes_fish"."icon_url"
 - https://github.com/graphql-python/graphene-django/blob/v2.15.0/graphene_django/fields.py#L132-L177
 - https://github.com/graphql-python/graphql-relay-py/blob/v2.0.1/graphql_relay/connection/arrayconnection.py#L30-L104
 
-## React Relay Next.js webapp
+## React Relay Next.js web app
+
+In addition to Relay, React, and TypeScript, the frontend UI uses [relay-hooks](https://github.com/relay-tools/relay-hooks), [Next.js](https://nextjs.org/), and [reactstrap](https://reactstrap.github.io/). It takes advantage of [Relay fragments](https://relay.dev/docs/en/thinking-in-relay) and [Next.js routing](https://nextjs.org/docs/routing/introduction#linking-between-pages) to store pagination state.
 
 ### Usage
 
@@ -124,3 +139,8 @@ SELECT "fishes_fish"."id", "fishes_fish"."description", "fishes_fish"."icon_url"
 ### Notes
 
 Server-side rendering (SSR) [is disabled](/react-relay-webapp/src/pages/index.tsx) because it's difficult to set up and isn't important for this example.
+
+### Interesting frontend code in this repo
+
+- [/react-relay-webapp/src/FishesPage.tsx](/react-relay-webapp/src/FishesPage.tsx)
+- [/react-relay-webapp/src/FishesPagination.tsx](/react-relay-webapp/src/FishesPagination.tsx)

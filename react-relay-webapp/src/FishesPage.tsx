@@ -1,34 +1,36 @@
-import {
-  Container,
-  Nav,
-  NavItem,
-  NavLink,
-  Navbar,
-  NavbarBrand,
-} from "reactstrap";
+import { useRouter } from "next/router";
+import { Container } from "reactstrap";
+import { graphql, useQuery as useRelayQuery } from "relay-hooks";
 
+import FishesNavbar from "./FishesNavbar";
+import FishesPagination from "./FishesPagination";
 import FishesTable from "./FishesTable";
+import { FishesPageQuery } from "./__generated__/FishesPageQuery.graphql";
 import { withRelayEnvironment } from "./relay-utils";
+import { TQuery } from "./types";
 
 function FishesPage() {
+  const { query } = useRouter<TQuery>();
+
+  const { data } = useRelayQuery<FishesPageQuery>(
+    graphql`
+      query FishesPageQuery($after: String) {
+        allFishes(first: 5, orderBy: "name", after: $after) {
+          ...FishesPagination_fishConnection
+          ...FishesTable_fishConnection
+        }
+      }
+    `,
+    { after: query.after },
+  );
+
   return (
     <>
-      <Navbar color="light" light>
-        <Container>
-          <NavbarBrand tag="span">
-            Graphene Relay Artsy Pagination Example
-          </NavbarBrand>
-          <Nav navbar>
-            <NavItem>
-              <NavLink href="https://github.com/saltycrane/graphene-relay-pagination-example/tree/artsy-example">
-                GitHub
-              </NavLink>
-            </NavItem>
-          </Nav>
-        </Container>
-      </Navbar>
-      <Container className="py-5">
-        <FishesTable />
+      <FishesNavbar />
+      <Container className="py-4">
+        <FishesPagination fishConnectionRef={data?.allFishes} />
+        <FishesTable fishConnectionRef={data?.allFishes} />
+        <FishesPagination fishConnectionRef={data?.allFishes} />
       </Container>
     </>
   );
