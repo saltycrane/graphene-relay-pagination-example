@@ -4,20 +4,13 @@ This is an example GraphQL API using [Relay connections](https://relay.dev/graph
 
 This repo contains an implementation of the Artsy pagination API in [Graphene](https://graphene-python.org/), [Django](https://www.djangoproject.com/), and Python and a corresponding web app using [Relay](https://relay.dev/), React, and TypeScript.
 
-#### Vanilla Graphene Relay pagination example
+### Vanilla Graphene Relay example
 
-For a vanilla Graphene Relay pagination API, which works well with an infinite scroll UI, see [my basic pagination example](https://github.com/saltycrane/graphene-relay-pagination-example/tree/basic-example).
+For a vanilla Graphene Relay pagination API for an infinite scroll UI, see my [basic example](https://github.com/saltycrane/graphene-relay-pagination-example/tree/basic-example).
 
-#### Screenshots
+### Screenshots
 
-**Beginning**
-![beginning screenshot](./images/beginning.png)
-
-**Middle**
-![middle screenshot](./images/middle.png)
-
-**End**
-![end screenshot](./images/end.png)
+<img src="https://raw.githubusercontent.com/saltycrane/graphene-relay-pagination-example/artsy-example/images/beginning.png" alt="beginning screenshot" height="200"> <img src="https://raw.githubusercontent.com/saltycrane/graphene-relay-pagination-example/artsy-example/images/middle.png" alt="middle screenshot" height="200">
 
 ## Graphene GraphQL API server
 
@@ -83,8 +76,8 @@ SELECT "fishes_fish"."id", "fishes_fish"."description", "fishes_fish"."icon_url"
     }
     ```
     
-    **GraphiQL query screenshot**
-    ![graphiql screenshot](./images/graphiql.png)
+    ##### GraphiQL query screenshot
+    <img src="https://raw.githubusercontent.com/saltycrane/graphene-relay-pagination-example/artsy-example/images/graphiql.png" alt="graphiql screenshot" height="800">
 
 #### Generate GraphQL schema
 
