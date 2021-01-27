@@ -55,17 +55,9 @@ SELECT "fishes_fish"."id", "fishes_fish"."description", "fishes_fish"."icon_url"
         pageCursors {
           previous {
             cursor
-            isCurrent
-            page
           }
           first {
             cursor
-            isCurrent
-            page
-          }
-          last {
-            cursor
-            isCurrent
             page
           }
           around {
@@ -73,26 +65,26 @@ SELECT "fishes_fish"."id", "fishes_fish"."description", "fishes_fish"."icon_url"
             isCurrent
             page
           }
-        }
-        pageInfo {
-          hasNextPage
-          hasPreviousPage
-          startCursor
-          endCursor
+          last {
+            cursor
+            page
+          }
+          next {
+            cursor
+          }
         }
         edges {
           cursor
           node {
-            id
-            iconUrl
-            description
             name
-            price
           }
         }
       }
     }
     ```
+    
+    **GraphiQL query screenshot**
+    ![graphiql screenshot](./images/graphiql.png)
 
 #### Generate GraphQL schema
 

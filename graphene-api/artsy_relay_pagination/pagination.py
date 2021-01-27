@@ -89,4 +89,9 @@ def create_page_cursors(page_options, total_records, max_pages=5):
             current_page - 1, current_page, size
         )
 
+    if current_page < total_pages and total_pages > 1:
+        page_cursors["next"] = page_to_cursor_object(
+            current_page + 1, current_page, size
+        )
+
     return page_cursors

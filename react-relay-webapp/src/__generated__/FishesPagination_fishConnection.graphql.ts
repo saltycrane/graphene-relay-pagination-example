@@ -16,6 +16,9 @@ export type FishesPagination_fishConnection = {
         readonly last: {
             readonly " $fragmentRefs": FragmentRefs<"FishesPagination_pageCursor">;
         } | null;
+        readonly next: {
+            readonly " $fragmentRefs": FragmentRefs<"FishesPagination_pageCursor">;
+        } | null;
         readonly previous: {
             readonly " $fragmentRefs": FragmentRefs<"FishesPagination_pageCursor">;
         } | null;
@@ -101,6 +104,16 @@ return {
           "args": null,
           "concreteType": "PageCursor",
           "kind": "LinkedField",
+          "name": "next",
+          "plural": false,
+          "selections": (v1/*: any*/),
+          "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "concreteType": "PageCursor",
+          "kind": "LinkedField",
           "name": "previous",
           "plural": false,
           "selections": (v1/*: any*/),
@@ -139,5 +152,5 @@ return {
   "abstractKey": null
 };
 })();
-(node as any).hash = '9c7cf7301ad8401145e7e2915db5cbe9';
+(node as any).hash = 'dcf99c4157c643dd620a658d3cfea33a';
 export default node;

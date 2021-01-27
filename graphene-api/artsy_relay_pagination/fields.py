@@ -16,6 +16,7 @@ class PageCursors(ObjectType):
     around = List(PageCursor)
     first = Field(PageCursor)
     last = Field(PageCursor)
+    next = Field(PageCursor)
     previous = Field(PageCursor)
 
 

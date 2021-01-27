@@ -35,6 +35,7 @@ type PageCursors {
   around: [PageCursor]
   first: PageCursor
   last: PageCursor
+  next: PageCursor
   previous: PageCursor
 }
 

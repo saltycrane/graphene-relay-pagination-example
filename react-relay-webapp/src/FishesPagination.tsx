@@ -30,6 +30,9 @@ export default function FishesPagination({ fishConnectionRef }: TProps) {
           last {
             ...FishesPagination_pageCursor
           }
+          next {
+            ...FishesPagination_pageCursor
+          }
           previous {
             ...FishesPagination_pageCursor
           }
@@ -43,12 +46,8 @@ export default function FishesPagination({ fishConnectionRef }: TProps) {
     fishConnectionRef,
   );
 
-  const { around = [], first, last, previous } =
+  const { around = [], first, last, next, previous } =
     fishConnection?.pageCursors ?? {};
-
-  /* TODO: change the backend to provide a `pageCursors.next` field like
-     the `pageCursors.previous` field instead of using `pageInfo` */
-  const { endCursor, hasNextPage } = fishConnection?.pageInfo ?? {};
 
   return (
     <Pagination>
@@ -63,14 +62,9 @@ export default function FishesPagination({ fishConnectionRef }: TProps) {
         />
       ))}
       {last && <FishesPaginationItem ellipsis="before" pageCursorRef={last} />}
-      <PaginationItem disabled={!hasNextPage}>
-        <NextPaginationLink
-          className="px-3"
-          href={{ query: { after: endCursor } }}
-        >
-          Next <ChevronRightIcon className="ml-1" />
-        </NextPaginationLink>
-      </PaginationItem>
+      <FishesPaginationItem className="px-3" pageCursorRef={next}>
+        Next <ChevronRightIcon className="ml-1" />
+      </FishesPaginationItem>
     </Pagination>
   );
 }
