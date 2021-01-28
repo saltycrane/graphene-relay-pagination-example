@@ -1,0 +1,37 @@
+schema {
+  query: Query
+}
+
+type FishNode implements Node {
+  id: ID!
+  description: String!
+  iconUrl: String!
+  name: String!
+  price: Int!
+}
+
+type FishNodeConnection {
+  pageInfo: PageInfo!
+  edges: [FishNodeEdge]!
+}
+
+type FishNodeEdge {
+  node: FishNode
+  cursor: String!
+}
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type Query {
+  fish(id: ID!): FishNode
+  allFishes(offset: Int, before: String, after: String, first: Int, last: Int): FishNodeConnection
+}
