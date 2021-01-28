@@ -1,3 +1,4 @@
 export type TQuery = {
-  after: string;
+  after?: string;
+  first: number;
 };

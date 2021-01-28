@@ -7,6 +7,7 @@ import NextPaginationLink, {
 import { FishesPagination_fishConnection$key } from "./__generated__/FishesPagination_fishConnection.graphql";
 import { FishesPagination_pageCursor$key } from "./__generated__/FishesPagination_pageCursor.graphql";
 import { ChevronLeftIcon, ChevronRightIcon } from "./icons";
+import useRouter from "./useRouter";
 
 /**
  * FishesPagination
@@ -83,6 +84,8 @@ function FishesPaginationItem({
   pageCursorRef,
   ...rest
 }: TFishesPaginationItemProps) {
+  const { query } = useRouter();
+
   const { cursor, isCurrent, page } =
     useFragment(
       graphql`
@@ -99,7 +102,10 @@ function FishesPaginationItem({
     <>
       {ellipsis === "before" && <EllipsisItem />}
       <PaginationItem active={isCurrent} disabled={!pageCursorRef}>
-        <NextPaginationLink {...rest} href={{ query: { after: cursor } }}>
+        <NextPaginationLink
+          {...rest}
+          href={{ query: { ...query, after: cursor } }}
+        >
           {children || page}
         </NextPaginationLink>
       </PaginationItem>

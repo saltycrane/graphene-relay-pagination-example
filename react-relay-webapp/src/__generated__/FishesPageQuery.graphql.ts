@@ -6,6 +6,7 @@ import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type FishesPageQueryVariables = {
     after?: string | null;
+    first: number;
 };
 export type FishesPageQueryResponse = {
     readonly allFishes: {
@@ -22,8 +23,9 @@ export type FishesPageQuery = {
 /*
 query FishesPageQuery(
   $after: String
+  $first: Int!
 ) {
-  allFishes(first: 5, orderBy: "name", after: $after) {
+  allFishes(orderBy: "name", after: $after, first: $first) {
     ...FishesPagination_fishConnection
     ...FishesTable_fishConnection
   }
@@ -79,6 +81,11 @@ var v0 = [
     "defaultValue": null,
     "kind": "LocalArgument",
     "name": "after"
+  },
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "first"
   }
 ],
 v1 = [
@@ -88,9 +95,9 @@ v1 = [
     "variableName": "after"
   },
   {
-    "kind": "Literal",
+    "kind": "Variable",
     "name": "first",
-    "value": 5
+    "variableName": "first"
   },
   {
     "kind": "Literal",
@@ -316,14 +323,14 @@ return {
     ]
   },
   "params": {
-    "cacheID": "d9ce13a32158dfbcb5b200675a9227bc",
+    "cacheID": "8f1fb221c7b06205ab83b76d55b70705",
     "id": null,
     "metadata": {},
     "name": "FishesPageQuery",
     "operationKind": "query",
-    "text": "query FishesPageQuery(\n  $after: String\n) {\n  allFishes(first: 5, orderBy: \"name\", after: $after) {\n    ...FishesPagination_fishConnection\n    ...FishesTable_fishConnection\n  }\n}\n\nfragment FishesPagination_fishConnection on FishNodeConnection {\n  pageCursors {\n    around {\n      ...FishesPagination_pageCursor\n      page\n    }\n    first {\n      ...FishesPagination_pageCursor\n    }\n    last {\n      ...FishesPagination_pageCursor\n    }\n    next {\n      ...FishesPagination_pageCursor\n    }\n    previous {\n      ...FishesPagination_pageCursor\n    }\n  }\n  pageInfo {\n    endCursor\n    hasNextPage\n  }\n}\n\nfragment FishesPagination_pageCursor on PageCursor {\n  cursor\n  isCurrent\n  page\n}\n\nfragment FishesTable_fishConnection on FishNodeConnection {\n  edges {\n    node {\n      description\n      iconUrl\n      id\n      name\n      price\n    }\n  }\n}\n"
+    "text": "query FishesPageQuery(\n  $after: String\n  $first: Int!\n) {\n  allFishes(orderBy: \"name\", after: $after, first: $first) {\n    ...FishesPagination_fishConnection\n    ...FishesTable_fishConnection\n  }\n}\n\nfragment FishesPagination_fishConnection on FishNodeConnection {\n  pageCursors {\n    around {\n      ...FishesPagination_pageCursor\n      page\n    }\n    first {\n      ...FishesPagination_pageCursor\n    }\n    last {\n      ...FishesPagination_pageCursor\n    }\n    next {\n      ...FishesPagination_pageCursor\n    }\n    previous {\n      ...FishesPagination_pageCursor\n    }\n  }\n  pageInfo {\n    endCursor\n    hasNextPage\n  }\n}\n\nfragment FishesPagination_pageCursor on PageCursor {\n  cursor\n  isCurrent\n  page\n}\n\nfragment FishesTable_fishConnection on FishNodeConnection {\n  edges {\n    node {\n      description\n      iconUrl\n      id\n      name\n      price\n    }\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = '6c4bc41724ad2324826a166f930e7d9a';
+(node as any).hash = 'd6a3d01924c6df657a212a6cbf75a760';
 export default node;
