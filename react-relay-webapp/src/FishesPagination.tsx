@@ -38,10 +38,6 @@ export default function FishesPagination({ fishConnectionRef }: TProps) {
             ...FishesPagination_pageCursor
           }
         }
-        pageInfo {
-          endCursor
-          hasNextPage
-        }
       }
     `,
     fishConnectionRef,

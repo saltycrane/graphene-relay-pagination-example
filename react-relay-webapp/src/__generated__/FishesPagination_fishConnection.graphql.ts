@@ -23,10 +23,6 @@ export type FishesPagination_fishConnection = {
             readonly " $fragmentRefs": FragmentRefs<"FishesPagination_pageCursor">;
         } | null;
     } | null;
-    readonly pageInfo: {
-        readonly endCursor: string | null;
-        readonly hasNextPage: boolean;
-    };
     readonly " $refType": "FishesPagination_fishConnection";
 };
 export type FishesPagination_fishConnection$data = FishesPagination_fishConnection;
@@ -121,36 +117,11 @@ return {
         }
       ],
       "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "concreteType": "PageInfo",
-      "kind": "LinkedField",
-      "name": "pageInfo",
-      "plural": false,
-      "selections": [
-        {
-          "alias": null,
-          "args": null,
-          "kind": "ScalarField",
-          "name": "endCursor",
-          "storageKey": null
-        },
-        {
-          "alias": null,
-          "args": null,
-          "kind": "ScalarField",
-          "name": "hasNextPage",
-          "storageKey": null
-        }
-      ],
-      "storageKey": null
     }
   ],
   "type": "FishNodeConnection",
   "abstractKey": null
 };
 })();
-(node as any).hash = 'dcf99c4157c643dd620a658d3cfea33a';
+(node as any).hash = 'f336cb22ec7b3e0f3d982b6159eff432';
 export default node;

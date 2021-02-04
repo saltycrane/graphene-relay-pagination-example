@@ -50,10 +50,6 @@ fragment FishesPagination_fishConnection on FishNodeConnection {
       ...FishesPagination_pageCursor
     }
   }
-  pageInfo {
-    endCursor
-    hasNextPage
-  }
 }
 
 fragment FishesPagination_pageCursor on PageCursor {
@@ -238,31 +234,6 @@ return {
           {
             "alias": null,
             "args": null,
-            "concreteType": "PageInfo",
-            "kind": "LinkedField",
-            "name": "pageInfo",
-            "plural": false,
-            "selections": [
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "endCursor",
-                "storageKey": null
-              },
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "hasNextPage",
-                "storageKey": null
-              }
-            ],
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
             "concreteType": "FishNodeEdge",
             "kind": "LinkedField",
             "name": "edges",
@@ -323,12 +294,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "8f1fb221c7b06205ab83b76d55b70705",
+    "cacheID": "ee4100dd02e8f219cb79996d13238837",
     "id": null,
     "metadata": {},
     "name": "FishesPageQuery",
     "operationKind": "query",
-    "text": "query FishesPageQuery(\n  $after: String\n  $first: Int!\n) {\n  allFishes(orderBy: \"name\", after: $after, first: $first) {\n    ...FishesPagination_fishConnection\n    ...FishesTable_fishConnection\n  }\n}\n\nfragment FishesPagination_fishConnection on FishNodeConnection {\n  pageCursors {\n    around {\n      ...FishesPagination_pageCursor\n      page\n    }\n    first {\n      ...FishesPagination_pageCursor\n    }\n    last {\n      ...FishesPagination_pageCursor\n    }\n    next {\n      ...FishesPagination_pageCursor\n    }\n    previous {\n      ...FishesPagination_pageCursor\n    }\n  }\n  pageInfo {\n    endCursor\n    hasNextPage\n  }\n}\n\nfragment FishesPagination_pageCursor on PageCursor {\n  cursor\n  isCurrent\n  page\n}\n\nfragment FishesTable_fishConnection on FishNodeConnection {\n  edges {\n    node {\n      description\n      iconUrl\n      id\n      name\n      price\n    }\n  }\n}\n"
+    "text": "query FishesPageQuery(\n  $after: String\n  $first: Int!\n) {\n  allFishes(orderBy: \"name\", after: $after, first: $first) {\n    ...FishesPagination_fishConnection\n    ...FishesTable_fishConnection\n  }\n}\n\nfragment FishesPagination_fishConnection on FishNodeConnection {\n  pageCursors {\n    around {\n      ...FishesPagination_pageCursor\n      page\n    }\n    first {\n      ...FishesPagination_pageCursor\n    }\n    last {\n      ...FishesPagination_pageCursor\n    }\n    next {\n      ...FishesPagination_pageCursor\n    }\n    previous {\n      ...FishesPagination_pageCursor\n    }\n  }\n}\n\nfragment FishesPagination_pageCursor on PageCursor {\n  cursor\n  isCurrent\n  page\n}\n\nfragment FishesTable_fishConnection on FishNodeConnection {\n  edges {\n    node {\n      description\n      iconUrl\n      id\n      name\n      price\n    }\n  }\n}\n"
   }
 };
 })();
