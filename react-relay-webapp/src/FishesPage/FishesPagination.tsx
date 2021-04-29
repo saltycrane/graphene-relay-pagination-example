@@ -1,5 +1,5 @@
+import { graphql, useFragment } from "react-relay";
 import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
-import { graphql, useFragment } from "relay-hooks";
 
 import NextPaginationLink, {
   TNextPaginationLinkProps,
@@ -43,8 +43,13 @@ export default function FishesPagination({ fishConnectionRef }: TProps) {
     fishConnectionRef,
   );
 
-  const { around = [], first, last, next, previous } =
-    fishConnection?.pageCursors ?? {};
+  const {
+    around = [],
+    first,
+    last,
+    next,
+    previous,
+  } = fishConnection.pageCursors;
 
   return (
     <Pagination>

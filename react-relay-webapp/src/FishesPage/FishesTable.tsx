@@ -1,7 +1,7 @@
-import { Spinner, Table } from "reactstrap";
-import { graphql, useFragment } from "relay-hooks";
+import { graphql, useFragment } from "react-relay";
+import { Table } from "reactstrap";
 
-import { connectionToArray } from "../relay-utils";
+import { connectionToArray } from "../relay";
 import { FishesTable_fishConnection$key } from "./__generated__/FishesTable_fishConnection.graphql";
 
 type TProps = {
@@ -26,8 +26,6 @@ export default function FishesTable({ fishConnectionRef }: TProps) {
     fishConnectionRef,
   );
 
-  const isLoading = !fishConnectionRef;
-
   return (
     <Table>
       <thead>
@@ -39,24 +37,16 @@ export default function FishesTable({ fishConnectionRef }: TProps) {
         </tr>
       </thead>
       <tbody>
-        {isLoading ? (
-          <tr>
-            <td className="text-muted">
-              <Spinner color="secondary" size="sm" /> Loading...
+        {connectionToArray(fishConnection).map((fish) => (
+          <tr key={fish.id}>
+            <td className="p-0">
+              <img height="128" src={fish.iconUrl} width="128" />
             </td>
+            <td>{fish.name}</td>
+            <td>{fish.description}</td>
+            <td>{fish.price}</td>
           </tr>
-        ) : (
-          connectionToArray(fishConnection).map((fish) => (
-            <tr key={fish.id}>
-              <td className="p-0">
-                <img height="128" src={fish.iconUrl} width="128" />
-              </td>
-              <td>{fish.name}</td>
-              <td>{fish.description}</td>
-              <td>{fish.price}</td>
-            </tr>
-          ))
-        )}
+        ))}
       </tbody>
     </Table>
   );

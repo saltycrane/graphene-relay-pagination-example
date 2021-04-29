@@ -107,16 +107,20 @@ $ ./manage.py graphql_schema --schema pagination_ex_api.schema.schema --out ../s
 
 ## React Relay Next.js web app
 
-In addition to Relay, React, and TypeScript, the frontend UI uses [relay-hooks](https://github.com/relay-tools/relay-hooks), [Next.js](https://nextjs.org/), and [reactstrap](https://reactstrap.github.io/). It takes advantage of [Relay fragments](https://relay.dev/docs/en/thinking-in-relay) and [Next.js routing](https://nextjs.org/docs/routing/introduction#linking-between-pages) to store pagination state.
+In addition to Relay, React, and TypeScript, the frontend UI uses [Next.js](https://nextjs.org/), and [reactstrap](https://reactstrap.github.io/). It takes advantage of [Relay v11 hooks](https://relay.dev/blog/2021/03/09/introducing-relay-hooks/), [Relay fragments](https://relay.dev/docs/en/thinking-in-relay) and [Next.js routing](https://nextjs.org/docs/routing/introduction#linking-between-pages) to store pagination state.
 
 ### Usage
 
 - Install Node.js 14
+- Install [Watchman](https://facebook.github.io/watchman/docs/install.html)
+  ```
+  brew install watchman
+  ```
 - Install packages and run dev server
   ``` sh
   $ cd react-relay-webapp
   $ npm install
-  $ npm run devserver
+  $ npm run dev
   ```
 
 - Go to http://127.0.0.1:3000 in the browser
@@ -127,5 +131,5 @@ Server-side rendering (SSR) [is disabled](/react-relay-webapp/src/pages/index.ts
 
 ### Interesting frontend code in this repo
 
-- [/react-relay-webapp/src/FishesPage.tsx](/react-relay-webapp/src/FishesPage.tsx)
-- [/react-relay-webapp/src/FishesPagination.tsx](/react-relay-webapp/src/FishesPagination.tsx)
+- [/react-relay-webapp/src/FishesPage/FishesMainContent.tsx](/react-relay-webapp/src/FishesPage/FishesMainContent.tsx)
+- [/react-relay-webapp/src/FishesPage/FishesPagination.tsx](/react-relay-webapp/src/FishesPage/FishesPagination.tsx)

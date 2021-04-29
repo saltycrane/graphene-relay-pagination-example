@@ -1,5 +1,3 @@
-import * as React from "react";
-import { RelayEnvironmentProvider } from "relay-hooks";
 import {
   Environment,
   Network,
@@ -46,26 +44,10 @@ function fetchQuery<T extends OperationType>(
 /**
  * environment
  */
-const environment = new Environment({
+export const environment = new Environment({
   network: Network.create(fetchQuery),
   store: new Store(new RecordSource()),
 });
-
-/**
- * withRelayEnvironment
- */
-export function withRelayEnvironment<TProps>(
-  WrappedComp: React.ComponentType<TProps>,
-) {
-  const WithRelayEnvironment = (props: TProps) => {
-    return (
-      <RelayEnvironmentProvider environment={environment}>
-        <WrappedComp {...props} />
-      </RelayEnvironmentProvider>
-    );
-  };
-  return WithRelayEnvironment;
-}
 
 /**
  * connectionToArray - convert Relay connection to array

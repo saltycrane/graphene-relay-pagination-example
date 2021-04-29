@@ -1,45 +1,28 @@
-import { Container } from "reactstrap";
-import { graphql, useQuery as useRelayQuery } from "relay-hooks";
+import { Suspense } from "react";
+import { RelayEnvironmentProvider } from "react-relay";
+import { Container, Spinner } from "reactstrap";
 
-import { withRelayEnvironment } from "../relay-utils";
-import useRouter from "../useRouter";
+import { environment } from "../relay";
+import FishesMainContent from "./FishesMainContent";
 import FishesNavbar from "./FishesNavbar";
-import FishesPagination from "./FishesPagination";
-import FishesPerPage from "./FishesPerPage";
-import FishesTable from "./FishesTable";
-import { FishesPageQuery } from "./__generated__/FishesPageQuery.graphql";
 
 function FishesPage() {
-  const { query } = useRouter();
-
-  const { data } = useRelayQuery<FishesPageQuery>(
-    graphql`
-      query FishesPageQuery($after: String, $first: Int!) {
-        allFishes(orderBy: "name", after: $after, first: $first) {
-          ...FishesPagination_fishConnection
-          ...FishesTable_fishConnection
-        }
-      }
-    `,
-    { after: query.after, first: query.first },
-  );
-
   return (
-    <>
+    <RelayEnvironmentProvider environment={environment}>
       <FishesNavbar />
       <Container className="py-4">
-        <div className="d-flex">
-          <FishesPagination fishConnectionRef={data?.allFishes} />
-          <FishesPerPage />
-        </div>
-        <FishesTable fishConnectionRef={data?.allFishes} />
-        <div className="d-flex">
-          <FishesPagination fishConnectionRef={data?.allFishes} />
-          <FishesPerPage />
-        </div>
+        <Suspense
+          fallback={
+            <div>
+              <Spinner color="secondary" size="sm" /> Loading...
+            </div>
+          }
+        >
+          <FishesMainContent />
+        </Suspense>
       </Container>
-    </>
+    </RelayEnvironmentProvider>
   );
 }
 
-export default withRelayEnvironment(FishesPage);
+export default FishesPage;

@@ -4,24 +4,24 @@
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type FishesPageQueryVariables = {
+export type FishesMainContentQueryVariables = {
     after?: string | null;
     first: number;
 };
-export type FishesPageQueryResponse = {
+export type FishesMainContentQueryResponse = {
     readonly allFishes: {
         readonly " $fragmentRefs": FragmentRefs<"FishesPagination_fishConnection" | "FishesTable_fishConnection">;
     } | null;
 };
-export type FishesPageQuery = {
-    readonly response: FishesPageQueryResponse;
-    readonly variables: FishesPageQueryVariables;
+export type FishesMainContentQuery = {
+    readonly response: FishesMainContentQueryResponse;
+    readonly variables: FishesMainContentQueryVariables;
 };
 
 
 
 /*
-query FishesPageQuery(
+query FishesMainContentQuery(
   $after: String
   $first: Int!
 ) {
@@ -129,7 +129,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "FishesPageQuery",
+    "name": "FishesMainContentQuery",
     "selections": [
       {
         "alias": null,
@@ -160,7 +160,7 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "FishesPageQuery",
+    "name": "FishesMainContentQuery",
     "selections": [
       {
         "alias": null,
@@ -294,14 +294,14 @@ return {
     ]
   },
   "params": {
-    "cacheID": "ee4100dd02e8f219cb79996d13238837",
+    "cacheID": "021a9a3f719cbd68ada0f602e2743d16",
     "id": null,
     "metadata": {},
-    "name": "FishesPageQuery",
+    "name": "FishesMainContentQuery",
     "operationKind": "query",
-    "text": "query FishesPageQuery(\n  $after: String\n  $first: Int!\n) {\n  allFishes(orderBy: \"name\", after: $after, first: $first) {\n    ...FishesPagination_fishConnection\n    ...FishesTable_fishConnection\n  }\n}\n\nfragment FishesPagination_fishConnection on FishNodeConnection {\n  pageCursors {\n    around {\n      ...FishesPagination_pageCursor\n      page\n    }\n    first {\n      ...FishesPagination_pageCursor\n    }\n    last {\n      ...FishesPagination_pageCursor\n    }\n    next {\n      ...FishesPagination_pageCursor\n    }\n    previous {\n      ...FishesPagination_pageCursor\n    }\n  }\n}\n\nfragment FishesPagination_pageCursor on PageCursor {\n  cursor\n  isCurrent\n  page\n}\n\nfragment FishesTable_fishConnection on FishNodeConnection {\n  edges {\n    node {\n      description\n      iconUrl\n      id\n      name\n      price\n    }\n  }\n}\n"
+    "text": "query FishesMainContentQuery(\n  $after: String\n  $first: Int!\n) {\n  allFishes(orderBy: \"name\", after: $after, first: $first) {\n    ...FishesPagination_fishConnection\n    ...FishesTable_fishConnection\n  }\n}\n\nfragment FishesPagination_fishConnection on FishNodeConnection {\n  pageCursors {\n    around {\n      ...FishesPagination_pageCursor\n      page\n    }\n    first {\n      ...FishesPagination_pageCursor\n    }\n    last {\n      ...FishesPagination_pageCursor\n    }\n    next {\n      ...FishesPagination_pageCursor\n    }\n    previous {\n      ...FishesPagination_pageCursor\n    }\n  }\n}\n\nfragment FishesPagination_pageCursor on PageCursor {\n  cursor\n  isCurrent\n  page\n}\n\nfragment FishesTable_fishConnection on FishNodeConnection {\n  edges {\n    node {\n      description\n      iconUrl\n      id\n      name\n      price\n    }\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = 'd6a3d01924c6df657a212a6cbf75a760';
+(node as any).hash = 'd7b3fe5521cfb9ca8aacf4abf17053a3';
 export default node;
