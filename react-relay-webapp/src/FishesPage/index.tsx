@@ -1,13 +1,13 @@
 import { Container } from "reactstrap";
 import { graphql, useQuery as useRelayQuery } from "relay-hooks";
 
+import { withRelayEnvironment } from "../relay-utils";
+import useRouter from "../useRouter";
 import FishesNavbar from "./FishesNavbar";
 import FishesPagination from "./FishesPagination";
 import FishesPerPage from "./FishesPerPage";
 import FishesTable from "./FishesTable";
 import { FishesPageQuery } from "./__generated__/FishesPageQuery.graphql";
-import { withRelayEnvironment } from "./relay-utils";
-import useRouter from "./useRouter";
 
 function FishesPage() {
   const { query } = useRouter();

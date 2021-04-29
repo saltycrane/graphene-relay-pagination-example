@@ -3,11 +3,11 @@ import { graphql, useFragment } from "relay-hooks";
 
 import NextPaginationLink, {
   TNextPaginationLinkProps,
-} from "./NextPaginationLink";
+} from "../NextPaginationLink";
+import { ChevronLeftIcon, ChevronRightIcon } from "../icons";
+import useRouter from "../useRouter";
 import { FishesPagination_fishConnection$key } from "./__generated__/FishesPagination_fishConnection.graphql";
 import { FishesPagination_pageCursor$key } from "./__generated__/FishesPagination_pageCursor.graphql";
-import { ChevronLeftIcon, ChevronRightIcon } from "./icons";
-import useRouter from "./useRouter";
 
 /**
  * FishesPagination

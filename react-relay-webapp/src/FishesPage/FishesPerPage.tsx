@@ -1,6 +1,6 @@
 import { Input } from "reactstrap";
 
-import useRouter from "./useRouter";
+import useRouter from "../useRouter";
 
 export default function FishesPerPage() {
   const { push, query } = useRouter();

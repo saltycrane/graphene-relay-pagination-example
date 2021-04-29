@@ -14,7 +14,7 @@
  */
 import dynamic from "next/dynamic";
 
-const ClientOnlyFishesPage = dynamic(() => import("../FishesPage"), {
+const ClientOnlyFishesPage = dynamic(() => import("../FishesPage/index"), {
   ssr: false,
 });
 

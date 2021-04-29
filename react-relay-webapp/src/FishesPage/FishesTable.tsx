@@ -1,8 +1,8 @@
 import { Spinner, Table } from "reactstrap";
 import { graphql, useFragment } from "relay-hooks";
 
+import { connectionToArray } from "../relay-utils";
 import { FishesTable_fishConnection$key } from "./__generated__/FishesTable_fishConnection.graphql";
-import { connectionToArray } from "./relay-utils";
 
 type TProps = {
   fishConnectionRef: FishesTable_fishConnection$key;
