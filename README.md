@@ -4,9 +4,9 @@ This is an example GraphQL API using [Relay connections](https://relay.dev/graph
 
 This repo contains an implementation of the Artsy pagination API in [Graphene](https://graphene-python.org/), [Django](https://www.djangoproject.com/), and Python and a corresponding web app using [Relay](https://relay.dev/), React, and TypeScript.
 
-### Vanilla Graphene Relay example
+### Infinite Scroll Graphene Relay example
 
-For a vanilla Graphene Relay pagination API for an infinite scroll UI, see my [basic example](https://github.com/saltycrane/graphene-relay-pagination-example/tree/basic-example).
+For a pagination API with an infinite scroll UI, see my [infinite scroll example](https://github.com/saltycrane/graphene-relay-infinite-scroll-example).
 
 ### Screenshots
 
